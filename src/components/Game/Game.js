@@ -14,25 +14,23 @@ function GuessGrid({ guesses, cols, rows }) {
   console.log({ rows, cols })
   return (
     <div className="guess-results">
-      {Array(rows)
-        .fill(null)
-        .map((_, i) => {
-          const guessResult = guesses[i] ?? range(cols)
-          return (
-            <p key={`guess_${i}`} className="guess">
-              {guessResult.map((result, j) => {
-                return (
-                  <span
-                    key={`letter_${j}`}
-                    className={`cell ${result?.status ?? ''}`}
-                  >
-                    {result?.letter ?? ''}
-                  </span>
-                )
-              })}
-            </p>
-          )
-        })}
+      {range(rows).map((_, i) => {
+        const guessResult = guesses[i] ?? range(cols)
+        return (
+          <p key={`guess_${i}`} className="guess">
+            {guessResult.map((result, j) => {
+              return (
+                <span
+                  key={`letter_${j}`}
+                  className={`cell ${result?.status ?? ''}`}
+                >
+                  {result?.letter ?? ''}
+                </span>
+              )
+            })}
+          </p>
+        )
+      })}
     </div>
   )
 }
